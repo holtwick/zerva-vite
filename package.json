@@ -45,8 +45,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "zeed": ">=0.7.51",
-    "zerva": ">=0.4.41",
+    "zeed": ">=0.7.53",
+    "zerva": ">=0.4.42",
     "vite": "^2.6.13"
   },
   "devDependencies": {

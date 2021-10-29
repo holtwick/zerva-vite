@@ -4,13 +4,13 @@
   "description": "",
   "main": "dist/main.cjs",
   "scripts": {
-    "start": "zerva",
+    "start": "ZEED=* zerva",
     "build": "zerva build"
   },
   "author": "Dirk Holtwick",
   "license": "ISC",
   "dependencies": {
-    "zeed": "^0.7.51",
+    "zeed": "^0.7.53",
     "zerva": "^0.4.41",
     "zerva-vite": "../.."
   }

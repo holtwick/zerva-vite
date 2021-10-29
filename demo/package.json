@@ -2,6 +2,7 @@
   "name": "vite-project",
   "version": "0.0.0",
   "scripts": {
+    "start": "(cd service && npm start)",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"

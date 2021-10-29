@@ -5,7 +5,8 @@
   "main": "dist/main.cjs",
   "scripts": {
     "start": "ZEED=* zerva",
-    "build": "zerva build"
+    "build": "zerva build",
+    "serve": "node dist/main.cjs"
   },
   "author": "Dirk Holtwick",
   "license": "ISC",

@@ -1,24 +1,43 @@
 // (C)opyright 2021 Dirk Holtwick, holtwick.it. All rights reserved.
 
-import { Logger } from "zeed"
-import { emit, on, register } from "zerva"
+import { resolve } from "path"
+import { Logger, toPath } from "zeed"
+import { on, register } from "zerva"
 
-const name = "counter"
+const name = "vite"
 const log = Logger(`zerva:${name}`)
 
 interface Config {
-  start?: number
+  root: string
+  www?: string
 }
 
-export function useCounter(config: Config) {
-  const { start = 0 } = config
+export function useVite(config: Config) {
   log.info(`use ${name}`)
-  register(name, ["http"])
-  let counter = start
-  on("httpInit", ({ get }) => {
-    get("/", async () => {
-      await emit("counterIncrement", ++counter)
-      return `Counter ${counter}.<br><br>Reload page to increase counter.`
-    })
+  register(name)
+
+  const { root, www = toPath("./www") } = config
+
+  on("httpInit", async ({ addStatic, app }) => {
+    log("http")
+    if (process.env.MODE === "production") {
+      addStatic("", www)
+
+      // Map dynamic routes to index.html
+      app?.get(/.*/, (req: any, res: any) => {
+        log("req.path", req.path)
+        res.sendFile(resolve(www, "index.html"))
+      })
+    } else {
+      // Create Vite server in middleware mode.
+      const { createServer } = await import("vite")
+      const vite = await createServer({
+        root: toPath(root),
+        server: {
+          middlewareMode: "html",
+        },
+      })
+      app?.use(vite.middlewares)
+    }
   })
 }

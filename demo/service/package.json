@@ -1,0 +1,18 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "start": "ZEED=* zerva",
+    "build": "zerva build",
+    "serve": "node dist/main.cjs"
+  },
+  "author": "Dirk Holtwick",
+  "license": "ISC",
+  "dependencies": {
+    "zeed": "^0.7.53",
+    "zerva": "^0.4.41",
+    "zerva-vite": "../.."
+  }
+}

@@ -1,21 +1,18 @@
 {
-  "name": "zerva-demo",
-  "version": "1.0.0",
-  "description": "Just a simple test",
-  "private": true,
-  "type": "module",
-  "main": "index.js",
-  "engines": {
-    "node": ">=14.13.1"
-  },
+  "name": "vite-project",
+  "version": "0.0.0",
   "scripts": {
-    "start": "zerva index.ts"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
-    "zeed": "^0.7.45",
-    "zerva": "^0.4.34",
-    "zerva-module-template": "file:.."
+    "vue": "^3.2.16"
   },
-  "author": "Dirk Holtwick",
-  "license": "MIT"
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.4",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.13",
+    "vue-tsc": "^0.28.10"
+  }
 }

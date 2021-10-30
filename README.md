@@ -19,6 +19,10 @@ Where `root` is the path to the Vite project that should be served.
 
 `www` would be the path where the Vite build should go to, to be served by Zerva. These are usually the generated files that land in `dist` but you can change the destination in the `vite.config.ts`via [`build.outDir`](https://vitejs.dev/config/#build-outdir).
 
+## Usage
+
+Usually you will use the `zerva` tool and everything is set up for you then. If you are not using a compile step, you'll need to activate the vite devoloper mode by setting then environment variable `ZERVA_VITE=1` instead.
+
 ## Directory structure
 
 You should try to have 2 separate projects, one for your Vite code and one for your Zerva code. The reason is, you will very likely have different dependencies to 3rd party modules in both projects. You also do not want to blow up the server side code too much with Vite build tools etc.

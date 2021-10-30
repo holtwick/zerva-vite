@@ -2,6 +2,7 @@
 
 import { resolve } from "path"
 import { on, register, Logger, toPath } from "zerva"
+import { useViteMiddleware } from "./vite"
 
 const name = "vite"
 const log = Logger(`zerva:${name}`)
@@ -15,38 +16,28 @@ export function useVite(config: Config) {
   log.info(`use ${name} ${process.env.ZERVA}`)
   register(name, ["http"])
 
-  if (process.env.ZERVA_VERSION == null) {
-    log.error("development server must be startet through zerva tool")
-    return
-  }
-
   const { root, www = "./www" } = config
   const rootPath = toPath(root)
   const wwwPath = toPath(www)
 
   on("httpWillStart", async ({ addStatic, app }) => {
-    if (process.env.ZERVA_DEVELOPMENT) {
+    if (
+      process.env.ZERVA_DEVELOPMENT ||
+      process.env.ZERVA_VITE ||
+      process.env.NODE_MODE === "development"
+    ) {
       log.info(`serving through vite from ${rootPath}`)
-
-      // Create Vite server in middleware mode.
-      const { createServer } = await import("vite")
-      const vite = await createServer({
-        root: rootPath,
-        server: {
-          middlewareMode: "html",
-        },
-      })
-      app?.use(vite.middlewares)
+      await useViteMiddleware(rootPath, app)
+      return
     }
-    if (process.env.ZERVA_PRODUCTION) {
-      log.info(`serving static files at ${wwwPath}}`)
-      addStatic("", wwwPath)
 
-      // Map dynamic routes to index.html
-      app?.get(/.*/, (req: any, res: any) => {
-        log("req.path", req.path)
-        res.sendFile(resolve(wwwPath, "index.html"))
-      })
-    }
+    log.info(`serving static files at ${wwwPath}}`)
+    addStatic("", wwwPath)
+
+    // Map dynamic routes to index.html
+    app?.get(/.*/, (req: any, res: any) => {
+      log("req.path", req.path)
+      res.sendFile(resolve(wwwPath, "index.html"))
+    })
   })
 }

@@ -1,5 +1,6 @@
 // (C)opyright 2021 Dirk Holtwick, holtwick.it. All rights reserved.
 
+import { existsSync } from "fs"
 import { resolve } from "path"
 import { on, register, Logger, toPath } from "zerva"
 import { useViteMiddleware } from "./vite"
@@ -20,12 +21,23 @@ export function useVite(config: Config) {
   const rootPath = toPath(root)
   const wwwPath = toPath(www)
 
+  const isDevMode =
+    process.env.ZERVA_DEVELOPMENT ||
+    process.env.ZERVA_VITE ||
+    process.env.NODE_MODE === "development"
+
+  if (isDevMode) {
+    if (!existsSync(rootPath)) {
+      log.error(`vite project does not exist at ${rootPath}`)
+    }
+  } else {
+    if (!existsSync(wwwPath)) {
+      log.error(`web files do not exist at ${wwwPath}`)
+    }
+  }
+
   on("httpWillStart", async ({ addStatic, app }) => {
-    if (
-      process.env.ZERVA_DEVELOPMENT ||
-      process.env.ZERVA_VITE ||
-      process.env.NODE_MODE === "development"
-    ) {
+    if (isDevMode) {
       log.info(`serving through vite from ${rootPath}`)
       await useViteMiddleware(rootPath, app)
       return

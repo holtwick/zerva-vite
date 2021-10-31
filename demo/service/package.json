@@ -14,8 +14,8 @@
   "author": "Dirk Holtwick",
   "license": "ISC",
   "dependencies": {
-    "zeed": "^0.7.53",
-    "zerva": "^0.4.46",
+    "zeed": "^0.7.54",
+    "zerva": "^0.4.49",
     "zerva-vite": "../.."
   }
 }

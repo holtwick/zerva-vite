@@ -7,7 +7,7 @@
   "scripts": {
     "start": "ZEED=* zerva",
     "dev": "ZEED=* ZERVA_VITE=1 node ./main.js",
-    "build": "zerva build",
+    "build": "rm -rf dist && rm -rf www && zerva build && (cd .. && npm run build)",
     "serve": "ZEED=* node dist/main.cjs",
     "serve:dev": "ZEED=* node main.js"
   },

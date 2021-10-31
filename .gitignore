@@ -4,5 +4,5 @@ pnpm*
 dist
 tmp
 *.log
-.out*
 *.local
+www

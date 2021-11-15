@@ -2,6 +2,7 @@
 
 import { existsSync } from "fs"
 import { resolve } from "path"
+import { ServerOptions } from "vite"
 import { on, register, Logger, toPath } from "zerva"
 import { useViteMiddleware } from "./vite"
 
@@ -11,6 +12,7 @@ const log = Logger(`zerva:${name}`)
 interface Config {
   root: string
   www?: string
+  server?: ServerOptions
 }
 
 export function useVite(config: Config) {
@@ -39,7 +41,7 @@ export function useVite(config: Config) {
   on("httpWillStart", async ({ addStatic, app }) => {
     if (isDevMode) {
       log.info(`serving through vite from ${rootPath}`)
-      await useViteMiddleware(rootPath, app)
+      await useViteMiddleware(rootPath, app, config?.server)
       return
     }
 

@@ -26,7 +26,7 @@ export async function render(url: string) {
     // itself on ctx.modules. After the render, ctx.modules would contain all the
     // components that have been instantiated during this render call.
     const ctx: SSRContext = {}
-    let html = await renderToString(app, ctx)
+    html = await renderToString(app, ctx)
 
     // for testing. Use deep import built-in module. PR #5248
 
@@ -37,7 +37,7 @@ export async function render(url: string) {
     // return [html, preloadLinks]
     cache[url] = html
   } else {
-    log.info(`take ${url} from cache`)
+    log.info(`take ${url} from cache`, html)
   }
 
   return html

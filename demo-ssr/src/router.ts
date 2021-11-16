@@ -6,16 +6,16 @@ import {
 
 // Auto generates routes from vue files under ./pages
 // https://vitejs.dev/guide/features.html#glob-import
-const pages = import.meta.glob("./pages/*.vue")
+// const pages = import.meta.glob("./pages/*.vue")
 
 const routes = [
   {
-    path: "/",
-    component: () => import("./components/HelloWorld.vue"),
-  },
-  {
     path: "/sub",
     component: () => import("./components/SubPage.vue"),
+  },
+  {
+    path: "/",
+    component: () => import("./components/HelloWorld.vue"),
   },
 ]
 //  Object.keys(pages).map((path) => {

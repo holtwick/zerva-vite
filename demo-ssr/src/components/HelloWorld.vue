@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
+import logo from "../assets/logo.png"
 
 defineProps<{ msg: string }>()
 
@@ -8,6 +9,10 @@ const count = ref(0)
 
 <template>
   <h1>{{ msg }}</h1>
+
+  <p>
+    <a href="/sub">Sub Page</a>
+  </p>
 
   <p>
     Recommended IDE setup:
@@ -31,6 +36,8 @@ const count = ref(0)
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+
+  <img :src="logo" />
 </template>
 
 <style scoped>

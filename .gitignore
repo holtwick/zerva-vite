@@ -6,3 +6,4 @@ tmp
 *.log
 *.local
 www
+demo-ssr/.out.cjs.map

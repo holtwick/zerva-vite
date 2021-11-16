@@ -41,7 +41,7 @@
     "build:tsup": "tsup src/index.ts --dts --sourcemap --format esm,cjs",
     "clean": "rm -rf dist",
     "check": "tsc --noEmit -p tsconfig.json",
-    "watch": "tsc -w -p tsconfig.json",
+    "watch": "npm run build:tsup -- --watch",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

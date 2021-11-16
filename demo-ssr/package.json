@@ -1,0 +1,21 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "ZEED=* zerva",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.4",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.13",
+    "vue-tsc": "^0.28.10",
+    "zerva": "^0.4.60",
+    "zerva-vite": "link:.."
+  }
+}

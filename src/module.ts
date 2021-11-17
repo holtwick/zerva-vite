@@ -12,7 +12,6 @@ interface Config {
   root: string
   ssr?: boolean
   www?: string
-  // server?: ServerOptions
 }
 
 export function useVite(config: Config) {
@@ -77,7 +76,10 @@ export function useVite(config: Config) {
             const appHtml = await render(url)
 
             // 5. Inject the app-rendered HTML into the template.
-            const html = template.replace(`<!--ssr-outlet-->`, appHtml)
+            //    Looks out for: <div id="app"></div>
+            const html = template.replace(/<.*?id="app".*?>.*?<\//gi, (m) =>
+              m.replace("</", appHtml + "</")
+            )
 
             // 6. Send the rendered HTML back.
             res.status(200).set({ "Content-Type": "text/html" }).end(html)

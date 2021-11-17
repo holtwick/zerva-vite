@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import logo from "../assets/logo.png"
-
-defineProps<{ msg: string }>()
-
+import { ClientOnly } from "./ClientOnly"
 const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>Hello World</h1>
+
+  <client-only> CLIENT ONLY </client-only>
 
   <p>
     <a href="/sub">Sub Page</a>

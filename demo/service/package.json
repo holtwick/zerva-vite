@@ -1,6 +1,6 @@
 {
   "name": "service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/main.cjs",
   "type": "module",
@@ -14,8 +14,8 @@
   "author": "Dirk Holtwick",
   "license": "ISC",
   "dependencies": {
-    "zeed": "^0.7.54",
-    "zerva": "^0.4.49",
+    "zeed": "^0.7.76",
+    "zerva": "^0.4.60",
     "zerva-vite": "../.."
   }
 }

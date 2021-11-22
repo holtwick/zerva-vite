@@ -6,5 +6,5 @@ tmp
 *.log
 *.local
 www
-demo-ssr/.out*
+.out*
 ssr-vue

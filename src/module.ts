@@ -2,9 +2,8 @@
 
 import { existsSync } from "fs"
 import { resolve } from "path"
-import { ServerOptions } from "vite"
 import { on, register, Logger, toPath } from "zerva"
-import { useViteMiddleware } from "./vite"
+import { createServer } from "vite"
 
 const name = "vite"
 const log = Logger(`zerva:${name}`)
@@ -12,7 +11,6 @@ const log = Logger(`zerva:${name}`)
 interface Config {
   root: string
   www?: string
-  server?: ServerOptions
 }
 
 export function useVite(config: Config) {
@@ -41,17 +39,23 @@ export function useVite(config: Config) {
   on("httpWillStart", async ({ addStatic, app }) => {
     if (isDevMode) {
       log.info(`serving through vite from ${rootPath}`)
-      await useViteMiddleware(rootPath, app, config?.server)
-      return
+
+      const vite = await createServer({
+        root: rootPath,
+        server: {
+          middlewareMode: "html",
+        },
+      })
+      app?.use(vite.middlewares)
+    } else {
+      log.info(`serving static files at ${wwwPath}}`)
+      addStatic("", wwwPath)
+
+      // Map dynamic routes to index.html
+      app?.get(/.*/, (req: any, res: any) => {
+        log("req.path", req.path)
+        res.sendFile(resolve(wwwPath, "index.html"))
+      })
     }
-
-    log.info(`serving static files at ${wwwPath}}`)
-    addStatic("", wwwPath)
-
-    // Map dynamic routes to index.html
-    app?.get(/.*/, (req: any, res: any) => {
-      log("req.path", req.path)
-      res.sendFile(resolve(wwwPath, "index.html"))
-    })
   })
 }

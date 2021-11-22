@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import { ref } from "vue"
-
-defineProps<{ msg: string }>()
-
+import logo from "../assets/logo.png"
+import { ClientOnly } from "./ClientOnly"
 const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>Hello World</h1>
+
+  <client-only> CLIENT ONLY </client-only>
+
+  <p>
+    <a href="/sub">Sub Page</a>
+  </p>
+
+  <p>
+    <router-link to="/sub">Sub Page via Vue</router-link>
+  </p>
 
   <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut tenetur
@@ -31,6 +40,8 @@ const count = ref(0)
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+
+  <img :src="logo" />
 </template>
 
 <style>

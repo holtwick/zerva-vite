@@ -1,6 +1,6 @@
 {
   "name": "zerva-vite",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "🌱 Zerva and Vite",
   "funding": {
     "type": "GitHub Sponsors ❤",
@@ -41,20 +41,20 @@
     "build:tsup": "tsup src/index.ts --dts --sourcemap --format esm,cjs",
     "clean": "rm -rf dist",
     "check": "tsc --noEmit -p tsconfig.json",
-    "watch": "tsc -w -p tsconfig.json",
+    "watch": "npm run build:tsup -- --watch",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "vite": "^2.6.13",
-    "zeed": "^0.7.65",
-    "zerva": "^0.4.58"
+    "vite": "^2.6.14",
+    "zeed": "^0.7.76",
+    "zerva": "^0.4.60"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.6",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
-    "tsup": "^5.6.0",
-    "typescript": "^4.4.4"
+    "tsup": "^5.8.0",
+    "typescript": "^4.5.2"
   }
 }

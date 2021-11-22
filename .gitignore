@@ -6,4 +6,5 @@ tmp
 *.log
 *.local
 www
-demo-ssr/.out.cjs.map
+demo-ssr/.out*
+ssr-vue

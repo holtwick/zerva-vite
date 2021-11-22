@@ -15,10 +15,14 @@ const count = ref(0)
   </p>
 
   <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
+    <router-link to="/sub">Sub Page via Vue</router-link>
+  </p>
+
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut tenetur
+    accusantium dolorem distinctio, rem asperiores consequatur fugiat laborum
+    cumque laudantium ullam quibusdam ad dolor facilis repellendus dolores
+    suscipit exercitationem quidem.
   </p>
 
   <p>See <code>README.md</code> for more information.</p>
@@ -40,7 +44,7 @@ const count = ref(0)
   <img :src="logo" />
 </template>
 
-<style scoped>
+<style>
 a {
   color: #42b983;
 }
